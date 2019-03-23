@@ -23,6 +23,8 @@ media
 # C extensions
 *.so
 
+# Database
+*.sqlite
 # Distribution / packaging
 .Python
 build/
