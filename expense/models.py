@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.utils.text import slugify
-
+from django.utils import timezone
 
 TRANSACTION_TYPES = (
     ('I', 'INCOME'),
@@ -35,7 +35,7 @@ class Category(models.Model):
         verbose_name_plural = 'Categories'
 
 
-class Transaction(models.Model):
+class Expense(models.Model):
     """
     Transactions model
     It  manages the transactions of company to different users
@@ -45,6 +45,10 @@ class Transaction(models.Model):
     amount = models.DecimalField(max_digits=8, decimal_places=2)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     transaction_type = models.CharField(max_length=1, choices=TRANSACTION_TYPES)
+    transaction_date = models.DateField('Transaction Date', default=timezone.now)
+    created_at = models.DateTimeField(default=timezone.now, editable=False)
+    updated_at = models.DateTimeField(auto_now=True)
+
 
     def __str__(self):
         return self.title
