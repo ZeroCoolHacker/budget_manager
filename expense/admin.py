@@ -1,5 +1,5 @@
 from django.contrib import admin
-from ledger.models import Board, Category, Transaction
+from expense.models import Board, Category, Expense
 
 # Register your models here.
 admin.site.register(Board)
@@ -14,10 +14,10 @@ class CategoryAdmin(admin.ModelAdmin):
     search_fields = ('name',)
 
 
-@admin.register(Transaction)
-class TransactionAdmin(admin.ModelAdmin):
-    '''Admin View for Transaction'''
+@admin.register(Expense)
+class ExpenseAdmin(admin.ModelAdmin):
+    '''Admin View for Expense'''
 
-    list_display = ('title', 'amount', 'category', 'transaction_type')
-    list_filter = ('category', 'transaction_type')
+    list_display = ('title', 'amount', 'category',)
+    list_filter = ('category',)
     search_fields = ('title', 'category', 'amount')
